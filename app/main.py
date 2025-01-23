@@ -11,6 +11,7 @@ app.mount("/static", StaticFiles(directory="app/static"), name="static")
 # 템플릿 설정
 templates = Jinja2Templates(directory="app/templates")
 
+# 수정 필요
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})

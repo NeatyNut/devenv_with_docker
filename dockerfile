@@ -7,6 +7,8 @@ COPY ./requirements.txt /code/requirements.txt
 
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
-COPY ./app /code/app
+RUN git clone https://github.com/NeatyNut/ipsi_rag.git
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
+# CMD ["tail", "-f", "/dev/null"]
+
+CMD ["uvicorn", "ipsi_rag.main:app", "--host", "0.0.0.0", "--port", "80"]

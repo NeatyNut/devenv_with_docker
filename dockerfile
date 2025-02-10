@@ -1,9 +1,12 @@
 ## Base image
-FROM python:3.12.8
+FROM python:3.9
 
-## Set working directory
-WORKDIR /opt/project
+WORKDIR /code
 
-## Install dependencies
-COPY . /opt/project/
-RUN pip install --no-cache-dir -r requirements.txt
+COPY ./requirements.txt /code/requirements.txt
+
+RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+
+COPY ./app /code/app
+
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]

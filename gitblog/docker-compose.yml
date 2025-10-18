@@ -8,3 +8,5 @@ services:
     #   - ./vendor/bundle:/usr/local/bundle
     environment:
       - JEKYLL_ENV=development
+    entrypoint: ["sh", "-c", "./start.sh"]
+    # entrypoint: ["sh", "-c", "sleep infinity"]

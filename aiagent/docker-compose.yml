@@ -1,0 +1,4 @@
+services:
+  aiagent:
+    build: .
+    entrypoint: ["bash", "-c", "sleep infinity"]

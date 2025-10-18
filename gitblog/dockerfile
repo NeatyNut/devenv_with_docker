@@ -1,0 +1,10 @@
+FROM jekyll/jekyll:latest
+
+ENV BLOG_SOURCE_URL https://github.com/NeatyNut/neatynut.github.io.git
+RUN git clone $BLOG_SOURCE_URL
+RUN sh -c "chown -R jekyll:jekyll /srv/jekyll"
+RUN sh -c "chmod -R u+w /srv/jekyll"
+RUN bundle install
+# EXPOSE 4000
+# CMD ["bundle", "exec", "jekyll", "serve", "-H", "0.0.0.0", "-P", "4000", "--livereload"]
+CMD ["sh", "-c", "sleep infinity"]

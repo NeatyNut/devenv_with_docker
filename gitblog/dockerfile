@@ -3,7 +3,7 @@ FROM ruby:3.3-alpine
 RUN apk add --no-cache git build-base ruby-dev
 
 WORKDIR /srv/jekyll
-COPY . .
+COPY start.sh ./start.sh
 
 ## 변경할 곳
 ENV USER NeatyNut

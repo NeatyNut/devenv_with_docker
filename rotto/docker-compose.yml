@@ -1,0 +1,6 @@
+services:
+  get_number:
+    build: .
+    ports:
+      - "8888:8888"
+    entrypoint: ["bash", "-c", "sleep infinity"]

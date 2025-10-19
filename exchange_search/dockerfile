@@ -2,7 +2,11 @@ FROM python:3.13-slim
 
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y git
+RUN apt-get update && apt-get install -y git tzdata \
+    && ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime \
+    && echo "Asia/Seoul" > /etc/timezone \
+    && dpkg-reconfigure -f noninteractive tzdata
+
 RUN git clone https://github.com/NeatyNut/Exchange_Rate_Search_Bot.git
 COPY credentials.json /app/Exchange_Rate_Search_Bot/credentials.json
 COPY .env /app/Exchange_Rate_Search_Bot/.env

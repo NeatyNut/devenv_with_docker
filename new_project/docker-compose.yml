@@ -1,0 +1,4 @@
+services:
+  dev:
+    image: ubuntu:22.04
+    command: ["bash", "-c", "sleep infinity"]

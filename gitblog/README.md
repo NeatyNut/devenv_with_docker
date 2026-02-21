@@ -2,13 +2,13 @@
 - 리눅스
 ```shell
 > cd ~
-> docker compose up
+> docker compose up -d
 ```
 
 - 윈도우
 ```
 > dir ~
-> docker compose up
+> docker compose up -d
 ```
 
 # 삭제법
@@ -22,5 +22,11 @@
 - Ruby 버전 : ruby 3.3.9
 - 작업 경로 : /srv/jekyll/
 - 블로그 빌드 주소 : http://127.0.0.1:4000/
+- 별도 필요 파일 : .env
+```
+GIT_TOKEN=<git토큰>
+USER=<git유저명>
+BLOG_URL=<git-blog-url>
+```
 
 ![alt text](gitblog.png)

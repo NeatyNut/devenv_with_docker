@@ -1,6 +1,11 @@
 services:
   jekyll:
-    build: .
+    build:
+      context: .
+      args:
+        - USER=${USER}
+        - BLOG_URL=${BLOG_URL}
+        - GIT_TOKEN=${GIT_TOKEN}
     ports:
       - "4000:4000"
     # volumes:

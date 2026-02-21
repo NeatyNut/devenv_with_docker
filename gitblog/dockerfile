@@ -3,16 +3,21 @@ FROM ruby:3.3-alpine
 RUN apk add --no-cache git build-base ruby-dev
 
 WORKDIR /srv/jekyll
+
+ARG USER
+ARG BLOG_URL
+ARG GIT_TOKEN
+
+
+RUN git config --global url."https://${GIT_TOKEN}@github.com/".insteadOf "https://github.com/" \
+    && git clone https://github.com/${USER}/${BLOG_URL} .
+    
+RUN addgroup -S jekyll && adduser -S jekyll -G jekyll \
+    && chown -R jekyll:jekyll /srv/jekyll \
+    && chmod -R u+w /srv/jekyll
+
+USER jekyll:jekyll
+
+RUN bundle install
+
 COPY start.sh ./start.sh
-
-## 변경할 곳
-ENV USER NeatyNut
-ENV BLOG_URL neatynut.github.io
-
-ENV GIT_URL https://github.com/${USER}/${BLOG_URL}.git
-RUN git clone $GIT_URL
-RUN addgroup -S jekyll && adduser -S jekyll -G jekyll
-RUN sh -c "chown -R jekyll:jekyll /srv/jekyll"
-RUN sh -c "chmod -R u+w /srv/jekyll"
-EXPOSE 4000
-RUN sh -c "cd /srv/jekyll/$BLOG_URL && bundle install"

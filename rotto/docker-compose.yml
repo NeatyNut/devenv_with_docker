@@ -1,6 +1,12 @@
 services:
-  get_number:
-    build: .
+  rotto:
+    build:
+      context: .
+      args:
+        - USER=${USER}
+        - BLOG_URL=${BLOG_URL}
+        - GIT_TOKEN=${GIT_TOKEN}    
+    container_name: rotto
     ports:
       - "15000:8888"
     entrypoint: ["bash", "-c", "sleep infinity"]
